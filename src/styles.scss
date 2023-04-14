@@ -1,0 +1,465 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoExtraBold-ExBdIt.eot");
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoExtraBold-ExBdIt.eot?#iefix")
+      format("embedded-opentype"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoExtraBold-ExBdIt.woff2")
+      format("woff2"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoExtraBold-ExBdIt.woff")
+      format("woff"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoExtraBold-ExBdIt.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-BoldItalic.eot");
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-BoldItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-BoldItalic.woff2")
+      format("woff2"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-BoldItalic.woff")
+      format("woff"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-BoldItalic.ttf")
+      format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Regular.eot");
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Regular.woff2")
+      format("woff2"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Regular.woff")
+      format("woff"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Regular.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoExtraBold-ExtBd.eot");
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoExtraBold-ExtBd.eot?#iefix")
+      format("embedded-opentype"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoExtraBold-ExtBd.woff2")
+      format("woff2"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoExtraBold-ExtBd.woff")
+      format("woff"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoExtraBold-ExtBd.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoMedium-MedIta.eot");
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoMedium-MedIta.eot?#iefix")
+      format("embedded-opentype"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoMedium-MedIta.woff2")
+      format("woff2"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoMedium-MedIta.woff")
+      format("woff"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoMedium-MedIta.ttf")
+      format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoMedium-Medium.eot");
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoMedium-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoMedium-Medium.woff2")
+      format("woff2"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoMedium-Medium.woff")
+      format("woff"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMonoMedium-Medium.ttf")
+      format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Bold.eot");
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Bold.woff2")
+      format("woff2"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Bold.woff")
+      format("woff"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Bold.ttf")
+      format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Italic.eot");
+  src: url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Italic.eot?#iefix")
+      format("embedded-opentype"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Italic.woff2")
+      format("woff2"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Italic.woff")
+      format("woff"),
+    url("../src/assets/fonts/JetBrains\ Mono/JetBrainsMono-Italic.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+html {
+  height: 100%;
+  font-family: "JetBrains Mono";
+  font-weight: normal;
+  font-style: normal;
+}
+
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.page {
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1 0 auto;
+}
+
+// h1,
+// h2,
+// h3 {
+//   font-family: "JetBrains Mono";
+// }
+
+// h1 {
+//   font-size: calc(1.3rem + 0.6vw);
+// }
+
+// h2 {
+//   font-size: calc(1.3rem + 0.3vw);
+// }
+
+// h3 {
+//   font-size: calc(1.3rem + 0vw);
+// }
+
+a,
+a > i {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover,
+a > i:hover {
+  color: #343a40;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+p > a:hover {
+  border-bottom: 1px solid #343a40;
+}
+
+.back:hover,
+.more:hover {
+  border-bottom: 1px solid #343a40;
+}
+
+.page-link {
+  color: black;
+  border: none;
+  border-radius: 0px !important;
+}
+
+.page-item.active .page-link {
+  color: black;
+  border: none;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid black;
+}
+
+.badge:hover {
+  cursor: pointer;
+  color: #fff !important;
+  background-color: #212529 !important;
+}
+
+.badge {
+  font-weight: normal !important;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* BLOG */
+
+// ul {
+//   list-style-type: none;
+//   margin-top: 0;
+//   margin-bottom: 0;
+//   padding-left: 0;
+// }
+
+/* .post-title {
+    font-size: 2.5rem;
+  } */
+
+.post-title a {
+  border-bottom: 1px solid rgba(52, 58, 64, 0.3);
+}
+
+.post-title a:hover {
+  border-bottom: 1px solid #343a40;
+}
+
+blockquote {
+  display: block;
+  border-width: 1px 1px;
+  border-style: solid;
+  border-color: rgba(52, 58, 64, 0.3);
+  padding: 1.5em;
+  margin: 1.5em 0;
+  position: relative;
+}
+
+blockquote p {
+  text-align: center;
+  margin: 0px;
+}
+
+blockquote:before {
+  content: "\201C";
+  position: absolute;
+  top: 0em;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  width: 3rem;
+  height: 2rem;
+  font: 6em/1.08em "PT Sans", sans-serif;
+  color: rgba(52, 58, 64, 0.9);
+  text-align: center;
+}
+
+.pdf-icon {
+  text-align: center;
+  max-width: 50px;
+  height: auto;
+}
+
+/* HOME */
+
+.home-background {
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-caption {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 59%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.home-caption-text {
+  color: #ffffff;
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
+    0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+/* LOGO */
+
+.logo-wrapper {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logo {
+  height: 200px;
+  width: auto;
+  border-radius: 50%;
+  -webkit-transition: -webkit-transform 1.1s ease-in-out;
+  transition: transform 1.1s ease-in-out;
+}
+
+.logo:hover {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+  cursor: pointer;
+}
+
+/* PULSE */
+
+.pulse {
+  cursor: pointer;
+  box-shadow: 0 0 0 rgb(255, 255, 255);
+  animation: pulse 2s infinite;
+}
+.pulse:hover {
+  animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 25px rgba(255, 255, 255, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 25px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 25px rgba(255, 255, 255, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+/* REVIEWS */
+
+.review-company {
+  font-size: 0.9em;
+  color: #343a40;
+}
+
+.slick-arrow {
+  border: none;
+}
+
+.stars-description {
+  font-size: 10px;
+}
+
+/* Marcel Piontek */
+
+.certificate {
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+}
+
+/* NAVIGATION */
+
+/* HAMBURGER */
+
+.icon-bar {
+  width: 30px;
+  height: 2px;
+  background-color: #343a40;
+  display: block;
+  transition: all 0.2s;
+  margin-top: 6px;
+}
+
+.navbar-toggler {
+  border: none;
+  background: transparent !important;
+}
+
+.navbar-toggler:focus {
+  border: none;
+}
+
+.navbar-toggler .top-bar {
+  transform: rotate(45deg);
+  transform-origin: 10% 10%;
+}
+
+.navbar-toggler .middle-bar {
+  opacity: 0;
+}
+
+.navbar-toggler .bottom-bar {
+  transform: rotate(-45deg);
+  transform-origin: 10% 90%;
+}
+
+.navbar-toggler.collapsed .top-bar {
+  transform: rotate(0);
+}
+
+.navbar-toggler.collapsed .middle-bar {
+  opacity: 1;
+}
+
+.navbar-toggler.collapsed .bottom-bar {
+  transform: rotate(0);
+}
+
+/* FOOTER */
+
+.footer {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.8rem;
+}
+
+.footer-nav-link {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.footer-nav-link:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* IMPRESSUM */
+
+.impressum h1,
+.impressum h2,
+.impressum h3 {
+  margin-bottom: 1rem;
+}
+
+/* DATENSCHUTZ */
+
+.datenschutz h1,
+.datenschutz h2,
+.datenschutz h3 {
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,165 @@
+<div class="col-xs-12 col-md-10 col-lg-8 mx-auto">
+
+    <div class="row">
+        <div class="col text-center">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-1"></span>
+        </div>
+    </div>
+
+    <div *ngIf="!isLoading">
+
+        <div *ngIf="event" class="container">
+            <div class="row mb-3">
+                <div class="col">
+                    <h1 class="display-4">{{event.title}}</h1>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-sm-12 col-md-12">
+                    <p>{{event.description}}</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <img src="https://source.unsplash.com/random/1080x150/?{{event.tags}}" alt="{{event.title}}" srcset=""
+                    class="img-fluid">
+            </div>
+            <div class="row mb-5">
+                <div class="col-sm-12 col-md-12">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <tbody>
+                                <tr>
+                                    <th>Datum</th>
+                                    <td>{{event.date | date: 'dd.MM.y \'um\' HH:mm \'Uhr\'':'GMT+1':'de'}}</td>
+                                </tr>
+                                <tr *ngIf="event.location">
+                                    <th>Location</th>
+                                    <td>{{event.location}}</td>
+                                </tr>
+                                <tr *ngIf="event.info">
+                                    <th>Info</th>
+                                    <td>{{event.info}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="event; else noEventFound;" class="container">
+            <div class="row mb-3">
+                <div class="col">
+                    <h2 class="display-6">Buchung:</h2>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInputFirstName"
+                                        placeholder="Vorname" formControlName="firstName"
+                                        [ngClass]="{ 'is-invalid': (f.firstName.touched || f.firstName.dirty || submitted) && f.firstName.errors, 'is-valid' : (f.firstName.touched || f.firstName.dirty || submitted) && !f.firstName.errors}" />
+                                    <label for="floatingInputFirstName">Vorname *</label>
+
+                                    <div *ngIf="(f.firstName.touched || f.firstName.dirty || submitted) && f.firstName.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f.firstName.errors.required">Vorname ist ein Pflichtfeld</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInputLastName"
+                                        placeholder="Nachname" formControlName="lastName"
+                                        [ngClass]="{ 'is-invalid': (f.lastName.touched || f.lastName.dirty || submitted) && f.lastName.errors, 'is-valid' : (f.lastName.touched || f.lastName.dirty || submitted) && !f.lastName.errors}" />
+                                    <label for="floatingInputLastName">Nachname *</label>
+
+                                    <div *ngIf="(f.lastName.touched || f.lastName.dirty || submitted) && f.lastName.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f.lastName.errors.required">Nachname ist ein Pflichtfeld</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" formControlName="email" class="form-control"
+                                        id="floatingInputEmail" placeholder="E-Mail"
+                                        [ngClass]="{ 'is-invalid': (f.email.touched || f.email.dirty || submitted) && f.email.errors, 'is-valid' : (f.email.touched || f.email.dirty) && !f.email.errors }" />
+                                    <label for="floatingInputEmail">E-Mail *</label>
+                                    <div *ngIf="(f.email.touched || f.email.dirty || submitted) && f.email.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">E-Mail ist ein Pflichtfeld</div>
+                                        <div *ngIf="f.email.errors.email">Die E-Mail Adresse muss gültig sein</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" id="participantsRange" formControlName="participants"
+                                        [ngClass]="{ 'is-invalid': (f.participants.touched || f.participants.dirty || submitted) && f.participants.errors, 'is-valid' : (f.participants.touched || f.participants.dirty || submitted) && !f.participants.errors}">
+                                        <option *ngFor="let possibleParticipants of possibleParticipantsArray"
+                                            value="{{possibleParticipants}}">{{possibleParticipants}}</option>
+                                    </select>
+                                    <label for="participantsRange" class="form-label">Teilnehmeranzahl</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Wir benötigen Ihre personenbezogenen Daten für folgende Zwecke:</p>
+                                <ul>
+                                    <li>Abwicklung Ihrer Buchung (Ihre E-Mail-Adresse, Ihren Vor- und Nachnamen)</li>
+                                    <li>zur Beantwortung Ihrer
+                                        Fragen (Ihre E-Mail-Adresse, ggf. Ihre Telefonnummer)</li>
+                                </ul>
+                                <p>
+                                    Ihre Daten werden nicht an Dritte weitergegeben.
+                                </p>
+                                <div class="form-check form-switch mb-3">
+                                    <input type="checkbox" formControlName="acceptTerms" id="acceptTerms"
+                                        class="form-check-input"
+                                        [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+                                    <label for="acceptTerms" class="form-check-label">Ich wurde über den vorstehend
+                                        genannten Zweck zur Erhebung, Verarbeitung und Nutzung informiert. Ich erkläre
+                                        hiermit, dass ich meine Zustimmung zur Erhebung, Verarbeitung, Nutzung meiner
+                                        personenbezogenen Daten auf freiwilliger Basis gebe. Ebenso bin
+                                        ich darüber informiert worden, dass ich meine Zustimmung jederzeit ohne für mich
+                                        nachteilige Folgen für die Zukunft widerrufen kann, ohne dass die Rechtmäßigkeit
+                                        der
+                                        bis zum Widerruf erfolgten Verarbeitung berührt wird. Somit stimme ich zu, dass
+                                        meine Angaben aus dem Formular zur Beantwortung meiner Anfrage erhoben und
+                                        verarbeitet werden.</label>
+                                    <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">
+                                        Datenverarbeitung muss zugestimmt werden</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 col mx-auto">
+                            <button class="btn btn-outline-success" type="submit">Absenden</button>
+                            <button class="btn btn-outline-dark" (click)="cancelBooking()">Abbrechen</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <ng-template #noEventFound>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p>Dieses Event existiert leider nicht.</p>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+
+</div>

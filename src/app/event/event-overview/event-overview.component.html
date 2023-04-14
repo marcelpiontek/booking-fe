@@ -1,0 +1,79 @@
+<div class="col-xs-12 col-md-10 col-lg-8 mx-auto">
+
+    <div class="row">
+        <div class="col text-center">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-1"></span>
+        </div>
+    </div>
+
+    <div *ngIf="!isLoading">
+
+        <ng-container *ngIf="events && events.length > 0; else noEventsFound">
+            <div class="container px-0">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 mb-3" *ngFor="let event of events; let i=index">
+                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg border-dark"
+                            style="background-image: url('https://source.unsplash.com/random/500x500/?{{event.tags}}&i={{i}}');">
+                            <div class="card-body bg-dark" style="--bs-bg-opacity: .3;">
+                                <div *ngIf="isAuthenticated()">
+                                    <a [routerLink]="" (click)="deleteEvent(event)"
+                                        class="nav-link"><span>Löschen</span></a>
+                                </div>
+                                <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                                    <h5 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{event.title}}</h5>
+                                    <h6 class="">{{event.date | date:'\'Am\' d. MMMM y \'um\' HH:mm
+                                        \'Uhr\'':'GMT+1':'de'}}
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted text-center bg-dark">
+                                <a class="link-light" [routerLink]="[ '/bookings/new' , event.id]">Buchen</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="isAuthenticated()" class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg border-dark"
+                            style="background-image: url('https://source.unsplash.com/random/600x600/?new');">
+                            <div class="card-body bg-dark" style="--bs-bg-opacity: .3;">
+                                <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                                    <h5 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Neues Event anlegen</h5>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted text-center bg-dark">
+                                <a class="link-light" [routerLink]="[ '/events/new']">+</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-template #noEventsFound>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p>Keine Events vorhanden</p>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+
+    <ng-template #cancelEventModal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="cancel-modal">Event löschen?</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <p>Soll das Event wirklich gelöscht werden?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark ml-3" (click)="modal.close('abort')">Nein,
+                abbrechen</button>
+            <button type="button" class="btn btn-outline-danger ml-3" (click)="modal.close('cancel')">Ja,
+                löschen</button>
+        </div>
+    </ng-template>
+
+</div>

@@ -1,0 +1,108 @@
+<div class="col-xs-12 col-md-10 col-lg-8 mx-auto">
+
+    <div class="row">
+        <div class="col text-center">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-1"></span>
+        </div>
+    </div>
+
+    <div *ngIf="!isLoading">
+
+        <div *ngIf="booking; else bookingNotFound" class="container">
+            <div class="row">
+                <div class="col px-0">
+                    <h1 class="display-4">Buchung</h1>
+                    <p class="lead">{{booking.creationDate | date:'\'vom\' d. MMMM y \'um\' HH:mm
+                        \'Uhr\'':'GMT+1':'de'}}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="booking" class="container">
+            <div class="row mb-3">
+                <div *ngIf="event" class="col-12 px-0">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <tbody>
+                                <tr>
+                                    <th>Event</th>
+                                    <td>{{event.title}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Datum</th>
+                                    <td>{{event.date | date: 'dd.MM.y \'um\' HH:mm \'Uhr\'':'GMT+1':'de'}}</td>
+                                </tr>
+                                <tr *ngIf="event.location">
+                                    <th>Location</th>
+                                    <td>{{event.location}}</td>
+                                </tr>
+                                <tr *ngIf="event.info">
+                                    <th>Info</th>
+                                    <td>{{event.info}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Vorname</th>
+                                    <td>{{booking.firstName}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nachname</th>
+                                    <td>{{booking.lastName}}</td>
+                                </tr>
+                                <tr>
+                                    <th>E-Mail</th>
+                                    <td>{{booking.email}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Gebuchte Teilnehmer</th>
+                                    <td>{{booking.participants | number}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="event && booking" class="row mb-3">
+                <div class="col px-0">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a class="btn btn-outline-info ml-3"
+                            href="mailto:{{event.replyAddress}}?subject=Event: {{event.title}}, Buchung: {{booking.firstName}} {{booking.lastName}}">Anbieter
+                            kontaktieren</a>
+                        <button type="button" class="btn btn-outline-danger ml-3"
+                            (click)="cancelBooking(booking)">Buchung
+                            stornieren</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <ng-template #cancelModal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="cancel-modal">Buchung stornieren?</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <p>Soll diese Buchung wirklich storniert werden?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark ml-3" (click)="modal.close('abort')">Nein,
+                abbrechen</button>
+            <button type="button" class="btn btn-outline-danger ml-3" (click)="modal.close('cancel')">Ja,
+                stornieren</button>
+        </div>
+    </ng-template>
+
+    <ng-template #bookingNotFound>
+        <div class="row">
+            <div class="col text-center">
+                <h1 class="display-4">Sorry.</h1>
+                <p class="lead">Dieser Buchung existiert nicht mehr.</p>
+                <a routerLinkActive="active" routerLink="/" class="nav-link" href="" class="btn btn-outline-dark">Zur
+                    den Events</a>
+            </div>
+        </div>
+    </ng-template>
+
+</div>
