@@ -8,15 +8,55 @@
     <div class="col-sm-12 col-md-6 mb-3">
         <p class="display-6">Events</p>
         <ol class="list-group">
-            <a *ngFor="let event of events" [routerLink]="">
-                <li class="list-group-item d-flex justify-content-between align-items-start">
+            <a *ngFor="let event of events" [routerLink]="" (click)="selectEvent(event)">
+                <li class="list-group-item d-flex justify-content-between align-items-start"
+                    [ngClass]="event.id == selectedEvent.id ? 'list-group-item-info' : ''">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">{{event.title}} ({{event.date | date: 'dd.MM.y':'GMT+1':'de'}})
-                        </div>
+                        <div class="fw-bold">{{event.title}} ({{event.date | date: 'dd.MM.y':'GMT+1':'de'}})</div>
                     </div>
                 </li>
             </a>
-
         </ol>
+    </div>
+</div>
+
+
+<div *ngIf="!isLoading && bookingsForSelectedEvent && bookingsForSelectedEvent.length > 0" class="row">
+    <div class="col-8 mb-3">
+        <p class="display-6">Teilnehmer</p>
+    </div>
+</div>
+
+<div *ngIf="!isLoading && bookingsForSelectedEvent && bookingsForSelectedEvent.length > 0" class="row">
+    <div class="col mb-3">
+        <div class="table-responsive">
+            <table id="participantsTable" class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Vorname</th>
+                        <th scope="col">Nachname</th>
+                        <th scope="col" class="d-none d-md-block">Email</th>
+                        <th scope="col">Teilnehmer</th>
+                        <th scope="col" class="d-none d-md-block">Buchungszeipunkt</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let booking of bookingsForSelectedEvent; index as i">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ booking.firstName }}</td>
+                        <td>{{ booking.lastName }}</td>
+                        <td class="d-none d-md-block">{{ booking.email }}</td>
+                        <td>{{ booking.participants | number }}</td>
+                        <td class="d-none d-md-block">{{ booking.creationDate | date:'dd.MM.y HH:mm:ss':'GMT+1':'de' }}
+                        </td>
+                        <td><a [routerLink]="['/bookings/details/', booking.id]" class="nav-link link-secondary">Zur
+                                Buchung</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

@@ -16,6 +16,11 @@ export class BookingService {
     return this.http.get<Booking>(url);
   }
 
+  getBookingsByEventId(id: string): Observable<Booking[]> {
+    const url = environment.apiUrl + `bookings/event/${id}`;
+    return this.http.get<Booking[]>(url);
+  }
+
   addBooking(booking: Booking): Observable<Booking> {
     const url = environment.apiUrl + 'bookings';
     return this.http.post<Booking>(url, booking);
